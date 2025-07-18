@@ -1,0 +1,15 @@
+movies:
+  get:
+    tags:
+      - Movies
+    summary: Получить список фильмов
+    operationId: getAllMovies
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../models/components.yml#/components/schemas/MovieResponse'

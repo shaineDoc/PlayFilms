@@ -1,7 +1,8 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.5.3'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.openapi.generator' version '6.6.0'
 }
 
 group = 'ru.shaineDoc.desktop'
@@ -13,56 +14,67 @@ java {
     }
 }
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 repositories {
     mavenCentral()
 }
 
-ext {
-    set('springCloudVersion', "2025.0.0")
-}
-
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    // Spring Starter
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.apache.kafka:kafka-streams'
-    implementation 'org.liquibase:liquibase-core'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    implementation 'org.springframework.kafka:spring-kafka'
-    implementation 'org.springframework.session:spring-session-data-mongodb'
-    implementation 'org.springframework.session:spring-session-data-redis'
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //JsonNullable
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+
+    // PostgreSQL
     runtimeOnly 'org.postgresql:postgresql'
+
+    // H2 (для тестов/локальной разработки)
+    runtimeOnly 'com.h2database:h2'
+
+    // Swagger/OpenAPI UI
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // MapStruct
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+    // Liquibase (опционально)
+    implementation 'org.liquibase:liquibase-core'
+
+    // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
-    testImplementation 'org.springframework.kafka:spring-kafka-test'
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:kafka'
-    testImplementation 'org.testcontainers:mongodb'
-    testImplementation 'org.testcontainers:postgresql'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+// Openapi generator
+compileJava.dependsOn tasks.named("openApiGenerate")
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
-}
-
-tasks.named('bootBuildImage') {
-    runImage = 'paketobuildpacks/ubuntu-noble-run-base:latest'
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$rootDir/src/main/resources/static/play-films-v0.0.1.yml"
+    outputDir = "$buildDir/generated"
+    apiPackage = "ru.shainedoc.api"
+    modelPackage = "ru.shainedoc.model"
+    invokerPackage = "ru.shainedoc.invoker"
+    configOptions.set([
+            dateLibrary         : "java8",
+            useSpringBoot3      : "true",
+            useTags             : "true",
+            interfaceOnly       : "true",
+            skipDefaultInterface: "true"
+    ])
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+sourceSets {
+    main {
+        java {
+            srcDir "$buildDir/generated/src/main/java"
+        }
+    }
 }
