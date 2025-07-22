@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,29 +26,34 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-@Table(name = "Movie")
+@Table(name = "movie")
 public class Movie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "movie_id", nullable = false)
-    private UUID id;
+    private UUID movieId;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "tmdb_id")
+    private Integer tmdbId;
+
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "release year", nullable = false)
+    @Column(name = "release_year")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releaseYear;
 
-    @Column(name = "poster_url", nullable = false)
+    @Column(name = "poster_url")
     private String posterUrl;
 
-    @Column(name = "trailer_url", nullable = false)
+    @Column(name = "trailer_url")
     private String trailerUrl;
 
-    @Column(name = "duration", nullable = false)
+    @Column(name = "duration")
     private Integer duration;
 
     @ManyToMany

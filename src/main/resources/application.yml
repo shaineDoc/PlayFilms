@@ -28,4 +28,7 @@ logging:
 
 springdoc:
   swagger-ui:
-    path: /client-service-v0.0.1.yml
+    path: /play-films-v0.0.1.yml
+
+tmdb:
+  api-key: 91d7c89d616a91ba66ad259365f0f458

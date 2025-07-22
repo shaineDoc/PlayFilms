@@ -11,6 +11,8 @@ servers:
 paths:
   /movies:
     $ref: './paths/movies.yml#/movies'
+  /movies/import-from-tmdb:
+    $ref: './paths/movies.yml#/movies-import-from-tmdb'
   /users:
     $ref: './paths/users.yml#/users'
   /rating:

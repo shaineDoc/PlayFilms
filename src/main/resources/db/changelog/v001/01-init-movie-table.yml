@@ -8,10 +8,13 @@ databaseChangeLog:
             tableName: movie
             columns:
               - column:
-                  name: id
+                  name: movie_id
                   type: uuid
                   constraints:
                     primaryKey: true
+              - column:
+                  name: tmdb_id
+                  type: int
               - column:
                   name: title
                   type: varchar(255)
