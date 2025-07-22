@@ -1,0 +1,54 @@
+components:
+  schemas:
+    uuid:
+     type: string
+     format: uuid
+     example: "550e8400-e29b-41d4-a716-446655440000"
+
+    score:
+      type: number
+      minimum: 1
+      maximum: 10
+      example: 8.5
+
+    quality:
+      type: string
+      example: "1080p"
+
+    language:
+      type: string
+      example: "ru"
+
+    sourceUrl:
+      type: string
+      example: "https://example.com/movie.mp4"
+
+    sourceType:
+      type: string
+      example: "DIRECT_LINK"
+
+    userName:
+      type: string
+      example: "john_doe"
+
+    email:
+      type: string
+      format: email
+      example: "user@example.com"
+
+    passwordHash:
+      type: string
+      example: "$2a$10$N9qo8uLOickgx2ZMRZoMy..."
+
+    role:
+      type: string
+      enum: [ USER, USER_PLUS, ADMIN ]
+      example: "USER"
+
+    title:
+      type: string
+      example: "Матрица"
+
+    description:
+      type: string
+      example: "Описание к фильму"

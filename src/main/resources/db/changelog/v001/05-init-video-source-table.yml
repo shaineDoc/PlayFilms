@@ -1,0 +1,20 @@
+
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: system
+      changes:
+        - createTable:
+            tableName: video_source
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: movie_id
+                  type: uuid
+              - column:
+                  name: source_url
+                  type: varchar(1000)

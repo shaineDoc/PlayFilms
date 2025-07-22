@@ -1,6 +1,6 @@
 package ru.shainedoc.desktop.playfilms.models.enums;
 
-public enum Genre {
+public enum GenreList {
     ACTION("Боевик"),
     ADVENTURE("Приключения"),
     COMEDY("Комедия"),
@@ -98,7 +98,7 @@ public enum Genre {
 
     private final String russianName;
 
-    Genre(String russianName) {
+    GenreList(String russianName) {
         this.russianName = russianName;
     }
 

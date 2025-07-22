@@ -1,2 +1,4 @@
-package ru.shainedoc.desktop.playfilms.controllers;public class GenreController {
+package ru.shainedoc.desktop.playfilms.controller;
+
+public class GenreController {
 }

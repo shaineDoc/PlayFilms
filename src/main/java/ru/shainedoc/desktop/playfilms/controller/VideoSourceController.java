@@ -1,2 +1,4 @@
-package ru.shainedoc.desktop.playfilms.controllers;public class VideoSourceController {
+package ru.shainedoc.desktop.playfilms.controller;
+
+public class VideoSourceController {
 }

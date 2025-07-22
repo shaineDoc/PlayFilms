@@ -1,0 +1,31 @@
+movies:
+  get:
+    tags:
+      - Movies
+    summary: Получить список фильмов
+    operationId: getAllMovies
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../models/components.yml#/components/schemas/MovieResponse'
+
+movies-import-from-tmdb:
+  get:
+    tags:
+      - Movies
+    summary: Импорт фильмов из TMDB и сохранение в базу данных
+    operationId: importMoviesFromTmdb
+    responses:
+      '200':
+        description: Успешно импортировано
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../models/components.yml#/components/schemas/MovieResponse'

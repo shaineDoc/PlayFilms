@@ -1,0 +1,59 @@
+components:
+  schemas:
+    RatingDTO:
+      type: object
+      required:
+        - movieId
+        - userId
+        - score
+      properties:
+        movieId:
+          $ref: 'variables.yml#/components/schemas/uuid'
+        userId:
+          $ref: 'variables.yml#/components/schemas/uuid'
+        score:
+          $ref: 'variables.yml#/components/schemas/score'
+
+    VideoSourceDTO:
+      type: object
+      required:
+        - quality
+        - language
+        - sourceUrl
+        - sourceType
+      properties:
+        quality:
+          $ref: 'variables.yml#/components/schemas/quality'
+        language:
+          $ref: 'variables.yml#/components/schemas/language'
+        sourceUrl:
+          $ref: 'variables.yml#/components/schemas/sourceUrl'
+        sourceType:
+          $ref: 'variables.yml#/components/schemas/sourceType'
+
+    UserDTO:
+      type: object
+      required:
+        - userName
+        - email
+        - role
+      properties:
+        userName:
+          $ref: 'variables.yml#/components/schemas/userName'
+        email:
+          $ref: 'variables.yml#/components/schemas/email'
+        passwordHash:
+          $ref: 'variables.yml#/components/schemas/passwordHash'
+        role:
+          $ref: 'variables.yml#/components/schemas/role'
+
+    MovieResponse:
+      type: object
+      properties:
+        id:
+          $ref: 'variables.yml#/components/schemas/uuid'
+        title:
+          $ref: 'variables.yml#/components/schemas/title'
+        description:
+          $ref: 'variables.yml#/components/schemas/description'
+        # ... остальные поля Movie

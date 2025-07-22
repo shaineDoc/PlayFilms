@@ -1,0 +1,14 @@
+
+databaseChangeLog:
+  - include:
+      file: db/changelog/v001/01-init-movie-table.yml
+  - include:
+      file: db/changelog/v001/02-init-user-table.yml
+  - include:
+      file: db/changelog/v001/03-init-rating-table.yml
+  - include:
+      file: db/changelog/v001/04-init-comment-table.yml
+  - include:
+      file: db/changelog/v001/05-init-video-source-table.yml
+  - include:
+      file: db/changelog/v001/06-init-genre-table.yml

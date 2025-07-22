@@ -1,0 +1,35 @@
+
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: system
+      changes:
+        - createTable:
+            tableName: movie
+            columns:
+              - column:
+                  name: movie_id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: tmdb_id
+                  type: int
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: release_year
+                  type: date
+              - column:
+                  name: duration
+                  type: int
+              - column:
+                  name: poster_url
+                  type: varchar(500)
+              - column:
+                  name: trailer_url
+                  type: varchar(500)
